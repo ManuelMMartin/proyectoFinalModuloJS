@@ -1,0 +1,219 @@
+.section-1 {
+   margin-top: 80px;
+   display: none;
+}
+
+.section-2 {
+   margin-top: 40px;
+
+   &__cards {
+      margin-top: 32px;
+   }
+
+   &__search {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+
+      input {
+         outline: none;
+         appearance: none;
+         background-color: transparent;
+         border: 1px solid #ffffff;
+         border-radius: 3px;
+         color: #ffffff;
+         padding: 10px 16px;
+         height: 46px;
+         flex: 1;
+         margin-right: 16px;
+
+         &::-webkit-input-placeholder {
+            color: #ffffff;
+            font-family: $font-family;
+            font-size: 18px;
+         }
+
+         &::-moz-placeholder {
+            color: #ffffff;
+            font-family: $font-family;
+            font-size: 18px;
+         }
+
+         &:-ms-input-placeholder {
+            color: #ffffff;
+            font-family: $font-family;
+            font-size: 18px;
+         }
+
+         &:-moz-placeholder {
+            color: #ffffff;
+            font-family: $font-family;
+            font-size: 18px;
+         }
+      }
+
+      .button {
+         height: 46px;
+         font-size: 18px;
+      }
+   }
+
+   &__fav {
+      &-list {
+         margin-top: 18px;
+      }
+
+      &-item {
+         border: 1px solid rgb(105, 107, 120);
+         padding: 12px;
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+
+         button {
+            width: 20px;
+            height: 20px;
+            position: relative;
+
+            &:before,
+            &:after {
+               content: "";
+               display: inline-block;
+               width: 1px;
+               height: 20px;
+               background-color: $color-primary-light;
+               position: absolute;
+               top: 0;
+               bottom: 0;
+               left: 50%;
+               right: 0;
+            }
+
+            &:after {
+               transform: rotate(45deg);
+            }
+
+            &:before {
+               transform: rotate(-45deg);
+            }
+         }
+      }
+   }
+
+   .card {
+      display: flex;
+      flex-direction: column;
+   }
+
+   .button-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+   }
+}
+
+.section-3 {
+   display: none;
+   margin-top: 40px;
+
+   &__img {
+      position: absolute;
+      z-index: -1;
+      filter: brightness(0.3);
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      object-fit: cover;
+   }
+
+   &__p {
+      z-index: 1;
+      position: relative;
+      margin-bottom: 40px;
+   }
+
+   &__spells {
+      display: flex;
+      justify-content: space-around;
+      z-index: 1;
+      position: relative;
+      margin-bottom: 40px;
+   }
+
+   &__results {
+      position: relative;
+   }
+
+   .container {
+      position: relative;
+      padding: 80px;
+
+      &:before {
+         background: radial-gradient(circle, rgba(16, 20, 27, 0) 0%, rgba(16, 20, 27, 1) 100%);
+         content: "";
+         display: inline-block;
+         position: absolute;
+         top: 0;
+         bottom: 0;
+         right: 0;
+         left: 0;
+         pointer-events: none;
+      }
+   }
+
+   .section__title {
+      position: relative;
+   }
+}
+
+.section-5 {
+   margin-top: 40px;
+
+   .section__title {
+      max-width: 800px;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+   }
+
+   @media (min-width: $screen-xs) {
+      p {
+         font-size: 20px;
+         line-height: 32px;
+      }
+   }
+
+   img {
+      height: 500px;
+      object-fit: contain;
+      object-position: top right;
+   }
+
+   @media (max-width: $screen-xs) {
+      img {
+         object-position: top center;
+      }
+   }
+
+   .button-container {
+      margin-top: 32px;
+   }
+
+   .container {
+      >.button {
+         width: 250px;
+         margin: 0 auto;
+         display: block;
+         margin-bottom: 32px;
+      }
+   }
+
+   #aventura {
+      .button {
+         text-align: left;
+      }
+   }
+}

@@ -1,0 +1,54 @@
+.header {
+    &__container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 80px;
+
+        @media (max-width: $screen-xs) {
+            flex-direction: column;
+            height: 100px;
+            justify-content: center;
+        }
+    }
+
+    &__logo {
+        height: 56px;
+
+        @media (max-width: $screen-xs) {
+            height: 48px;
+            margin-bottom: 10px;
+        }
+    }
+
+    &__menu {
+        &-list {
+            display: flex;
+        }
+
+        &-link {
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+
+            &:hover,
+            &.is-active {
+                text-decoration: underline $color-primary;
+                text-underline-offset: 6px;
+            }
+        }
+
+        &-item {
+            margin-right: 44px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+
+
+
+    }
+
+}

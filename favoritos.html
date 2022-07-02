@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <title>Hogwarts</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="" sizes="any">
+    <script type="text/javascript" src="js/js.js"></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header__container container">
+            <a class="header__logo-link" href="index.html">
+                <img class="header__logo" src="images/logo.svg" alt="logo Hogwarts">
+            </a>
+
+            <nav class="header__menu">
+                <ul class="header__menu-list">
+                    <li class="header__menu-item">
+                        <a class="header__menu-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="header__menu-item">
+                        <a class="header__menu-link is-active" href="favoritos.html">Buscador</a>
+                    </li>
+                    <li class="header__menu-item">
+                        <a class="header__menu-link" href="acercaDe.html">Acerca de</a>
+                    </li>
+                    <li class="header__menu-item">
+                        <a class="header__menu-link" href="aventura.html">Aventura interactiva</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section section-2">
+        <div class="container">
+            <div class="section-2__search">
+                <input type="text" id="texto" placeholder="Introduce un nombre">
+                <button class="button" id="button" onclick="pedirCharacter()" type="button">Enviar</button>
+            </div>
+
+            <div class="section-2__fav">
+                <button class="button button--bdr" id="ensenyar" onclick="ensenyar()">Ver favoritos</button>
+                <div id="favoritosEnsenyar">
+                    <ul class="section-2__fav-list" id="favList"></ul>
+                </div>
+            </div>
+
+            <div class="section-2__cards">
+                <div class="grid grid--4-cols" id="cardCharacter"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="duel" class="section section-3">
+        <div class="container">
+            <h2 class="section__title">Bienvenido al area de duelo</h2>
+            <img class="section-3__img" src="images/duelo.jpg" alt="">
+            <p class="section-3__p">No olvideis inclinaros ante vuestro contrincante, sostener la varita en la posición
+                correcta y solo atacar
+                dentro de los parámetros establecidos. Si estais preparados... que empiece el duelo!</p>
+            <div class="section-3__spells">
+                <button class="button" value="1" onclick="spell(this.value)">Expelliarmus</button>
+                <button class="button" value="2" onclick="spell(this.value)">Petrificus Totalus</button>
+                <button class="button" value="3" onclick="spell(this.value)">Rictusempra</button>
+            </div>
+            <div class="section-3__results">
+                <p id="victoria">Victorias - 0</p>
+                <p id="derrota">Derrotas - 0</p>
+                <p id="desenlace"></p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <a class="footer__legal" href="favoritos.html">© Copyright. Hogwarts 2022</a>
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+.grid {
+  display: grid;
+  grid-gap: $gap;
+
+  @for $i from 1 through 6 {
+    &--#{$i}-cols {
+      grid-template-columns: repeat(#{$i}, 1fr);
+
+      @media (max-width: $screen-xs) {
+        grid-template-columns: 100%;
+        grid-gap: $gap-xs;
+      }
+    }
+  }
+}

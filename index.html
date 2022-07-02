@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <title>Hogwarts</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="" sizes="any">
+    <script type="text/javascript" src="js/js.js"></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header__container container">
+            <a class="header__logo-link" href="index.html">
+                <img class="header__logo" src="images/logo.svg" alt="logo Hogwarts">
+            </a>
+            
+            <nav class="header__menu">
+                <ul class="header__menu-list">
+                    <li class="header__menu-item">
+                        <a class="header__menu-link is-active" href="index.html">Inicio</a>
+                    </li>
+                    <li class="header__menu-item">
+                        <a class="header__menu-link" href="favoritos.html">Buscador</a>
+                    </li>
+                    <li class="header__menu-item">
+                        <a class="header__menu-link" href="acercaDe.html">Acerca de</a>
+                    </li>
+                    <li class="header__menu-item">
+                        <a class="header__menu-link" href="aventura.html">Aventura interactiva</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="grid grid--4-cols">
+            <article class="grid__item grid__item--1">
+                <button class="hero__house" value="Gryffindor" onclick="(casa(this.value))">
+                    <img class="hero__img" src="images/Gryffindor.jpg" alt="Escudo de Gryffindor">
+                    <h2 class="hero__title">Gryffindor</h2>
+                </button>
+            </article>
+            </button>
+
+            <article class="grid__item grid__item--2">
+                <button class="hero__house" value="Hufflepuff" onclick="casa(this.value)">
+                    <img class="hero__img" src="images/Hufflepuff.jpg" alt="Escudo de Hufflepuff">
+                    <h2 class="hero__title">Hufflepuff</h2>
+                </button>
+            </article>
+
+            </button>
+            <article class="grid__item grid__item--3">
+                <button class="hero__house" value="Ravenclaw" onclick="casa(this.value)">
+                    <img class="hero__img" src="images/Ravenclaw.jpg" alt="Escudo de Ravenclaw">
+                    <h2 class="hero__title">Ravenclaw</h2>
+                </button>
+            </article>
+            </button>
+
+            <article class="grid__item grid__item--4">
+                <button class="hero__house" value="Slytherin" onclick="casa(this.value)">
+                    <img class="hero__img" src="images/Slytherin.jpg" alt="Escudo de Slytherin">
+                    <h2 class="hero__title">Slytherin</h2>
+                </button>
+            </article>
+        </div>
+    </section>
+
+    <section id="section-1" class="section section-1">
+        <div class="container">
+            <div class="grid grid--4-cols" id="cardHouses"></div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <a class="footer__legal" href="index.html">© Copyright. Hogwarts 2022</a>
+        </div>
+    </footer>
+</body>
+
+</html>
+

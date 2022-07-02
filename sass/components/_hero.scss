@@ -1,0 +1,74 @@
+.hero {
+    height: calc(100vh - 80px);
+    position: relative;
+
+    @media (max-width: $screen-xs) {
+        height: calc(100vh - 100px);
+    }
+
+    &__img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+        object-position: center center;
+        transition: 1.5s;
+    }
+
+    &__title {
+        position: absolute;
+        top: 50px;
+        color: #ffffff;
+        z-index: 1;
+        font-family: $font-family-titles;
+
+        @media (max-width: $screen-xs) {
+            top: 50%;
+            transform: translate(0, -50%);
+        }
+    }
+
+    &__house {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        &::before {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, .6);
+            z-index: 1;
+            transition: .3s;
+        }
+    }
+
+    .grid {
+        height: 100%;
+        grid-gap: 0;
+    }
+
+    .grid__item {
+        font-size: 13px;
+        text-align: center;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+
+        &:hover {
+            .hero__img {
+                transform: scale(1.2);
+            }
+
+            .hero__house {
+                &::before {
+                    background-color: rgba(0, 0, 0, .5);
+                }
+            }
+        }
+    }
+}

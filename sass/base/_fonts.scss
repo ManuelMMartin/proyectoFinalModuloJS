@@ -1,0 +1,51 @@
+@font-face {
+    font-family: 'Bluu Next';
+    src: url('fonts/BluuNext-Titling.eot');
+    src: url('fonts/BluuNext-Titling.eot?#iefix') format('embedded-opentype'),
+        url('fonts/BluuNext-Titling.woff2') format('woff2'),
+        url('fonts/BluuNext-Titling.woff') format('woff'),
+        url('fonts/BluuNext-Titling.ttf') format('truetype'),
+        url('fonts/BluuNext-Titling.svg#BluuNext-Titling') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bluu Next';
+    src: url('fonts/BluuNext-Bold.eot');
+    src: url('fonts/BluuNext-Bold.eot?#iefix') format('embedded-opentype'),
+        url('fonts/BluuNext-Bold.woff2') format('woff2'),
+        url('fonts/BluuNext-Bold.woff') format('woff'),
+        url('fonts/BluuNext-Bold.ttf') format('truetype'),
+        url('fonts/BluuNext-Bold.svg#BluuNext-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bluu Next';
+    src: url('fonts/BluuNext-BoldItalic.eot');
+    src: url('fonts/BluuNext-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('fonts/BluuNext-BoldItalic.woff2') format('woff2'),
+        url('fonts/BluuNext-BoldItalic.woff') format('woff'),
+        url('fonts/BluuNext-BoldItalic.ttf') format('truetype'),
+        url('fonts/BluuNext-BoldItalic.svg#BluuNext-BoldItalic') format('svg');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Sofia Pro';
+    src: url('fonts/SofiaProLight.eot');
+    src: url('fonts/SofiaProLight.eot?#iefix') format('embedded-opentype'),
+        url('fonts/SofiaProLight.woff2') format('woff2'),
+        url('fonts/SofiaProLight.woff') format('woff'),
+        url('fonts/SofiaProLight.ttf') format('truetype'),
+        url('fonts/SofiaProLight.svg#SofiaProLight') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
