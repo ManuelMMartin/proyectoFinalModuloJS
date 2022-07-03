@@ -884,6 +884,10 @@ h3 {
   text-align: left;
 }
 
+.section-4 p {
+  margin-bottom: 24px;
+}
+
 .footer {
   color: #ffffff;
   font-size: 13px;
