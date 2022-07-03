@@ -785,6 +785,14 @@ h3 {
   -o-object-fit: cover;
      object-fit: cover;
 }
+@media (max-width: 699px) {
+  .section-3 .button {
+    margin-bottom: 10px;
+  }
+  .section-3 .button :last-child {
+    margin-bottom: 0;
+  }
+}
 .section-3__p {
   z-index: 1;
   position: relative;
@@ -799,6 +807,14 @@ h3 {
   z-index: 1;
   position: relative;
   margin-bottom: 40px;
+}
+@media (max-width: 699px) {
+  .section-3__spells {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
 }
 .section-3__results {
   position: relative;
@@ -817,6 +833,11 @@ h3 {
   right: 0;
   left: 0;
   pointer-events: none;
+}
+@media (max-width: 699px) {
+  .section-3 .container {
+    padding: 28px;
+  }
 }
 .section-3 .section__title {
   position: relative;

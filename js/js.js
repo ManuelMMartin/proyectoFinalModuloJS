@@ -2,43 +2,45 @@
 
 
 function casa(value) {
-    document.getElementById("section-1").style.display = 'block'
+  document.getElementById("section-1").style.display = 'block'
 
-    fetch(`http://hp-api.herokuapp.com/api/characters/house/${value}`).then(respuesta => respuesta.json()).then(datos => {
-        impresion = ""
-        for (let i = 0; i < datos.length; i++) {
-            let name = datos[i].name.toUpperCase()
-            impresion += `<div class="grid__item card">
+  fetch(`http://hp-api.herokuapp.com/api/characters/house/${value}`).then(respuesta => respuesta.json()).then(datos => {
+    impresion = ""
+    for (let i = 0; i < datos.length; i++) {
+      let name = datos[i].name.toUpperCase()
+      impresion += `<div class="grid__item card">
                <ul>
                   
                   <li class="card__img">${datos[i].image != ""
-                    ? `<img src="${datos[i].image}" alt='${datos[i].name} image' :"image" }">`
-                    : `<img src="${datos[i].gender === "male" ? "images/mago-h.jpg" : "images/mago-m.jpg"}" alt="${datos[i].name} image" :"image" }">`}</li>
+          ? `<img src="${datos[i].image}" alt='${datos[i].name} image' :"image" }">`
+          : `<img src="${datos[i].gender === "male" ? "images/mago-h.jpg" : "images/mago-m.jpg"}" alt="${datos[i].name} image" :"image" }">`}</li>
                     <li class="card__name">${name}</li>
                     <li>Año de nacimiento: ${datos[i].yearOfBirth}</li>
                   <li>Nucleo varita: ${datos[i].wand["core"]}</li>
                </ul>
             </div>`
-        }
-        cardHouses.innerHTML = impresion
-    })
+    }
+    cardHouses.innerHTML = impresion
+  })
 }
 
 function pedirCharacter() {
-    fetch(`http://hp-api.herokuapp.com/api/characters`).then(respuesta => respuesta.json()).then(datos2 => {
+  cardCharacter.innerText =""
+  noFind.innerText =""
+  fetch(`http://hp-api.herokuapp.com/api/characters`).then(respuesta => respuesta.json()).then(datos2 => {
 
-        let input = document.getElementById('texto').value
-        input = input.toUpperCase()
+    let input = document.getElementById('texto').value
+    input = input.toUpperCase()
 
-        impresion2 = ""
-        for (let i = 0; i < datos2.length; i++) {
-            let name = datos2[i].name.toUpperCase()
-            if (name.includes(input)) {
-                impresion2 += `<div class="grid__item card">
+    impresion2 = ""
+    for (let i = 0; i < datos2.length; i++) {
+      let name = datos2[i].name.toUpperCase()
+      if (name.includes(input)) {
+        impresion2 += `<div class="grid__item card">
          <ul>
             <li class="card__img">${datos2[i].image != ""
-                        ? `<img src="${datos2[i].image}" alt='${datos2[i].name} image' :"image" }">`
-                        : `<img src="${datos2[i].gender === "male" ? "images/mago-h.jpg" : "images/mago-m.jpg"}" alt="${datos2[i].name} image" :"image" }">`}</li>
+            ? `<img src="${datos2[i].image}" alt='${datos2[i].name} image' :"image" }">`
+            : `<img src="${datos2[i].gender === "male" ? "images/mago-h.jpg" : "images/mago-m.jpg"}" alt="${datos2[i].name} image" :"image" }">`}</li>
                         <li class="card__name">${name}</li>
                         <li>Color de ojos: ${datos2[i].eyeColour}</li>
             <li>Color de pelo: ${datos2[i].hairColour}</li>
@@ -51,54 +53,54 @@ function pedirCharacter() {
             <a href="#duel" class="button" id="duelo" onclick="verDuelo()">Duelo</a>
          </div>
       </div>`
-                console.log(datos2[i].name)
-            }
-        }
-        if (impresion2 != "") {
-            cardCharacter.innerHTML = impresion2
-        } else {
-            cardCharacter.innerHTML = `<h2>Ese nombre no tiene coincidencias con nuestra base de datos</h2>`
-        }
+        console.log(datos2[i].name)
+      }
     }
-    )
+    if (impresion2 != "") {
+      cardCharacter.innerHTML = impresion2
+    } else {
+      noFind.innerHTML = `<h2>Ese nombre no tiene coincidencias con nuestra base de datos</h2>`
+    }
+  }
+  )
 }
 
 function favoritos(value) {
-    let datos = { nombre: value }
-    let favoritos = localStorage.getItem("favoritos") || "[]"
-    favoritos = JSON.parse(favoritos)
-    let posLista = favoritos.findIndex(function (e) { return e.nombre == datos.nombre; })
-    console.log(posLista)
-    if (posLista > -1) {
+  let datos = { nombre: value }
+  let favoritos = localStorage.getItem("favoritos") || "[]"
+  favoritos = JSON.parse(favoritos)
+  let posLista = favoritos.findIndex(function (e) { return e.nombre == datos.nombre; })
+  console.log(posLista)
+  if (posLista > -1) {
 
-    } else {
-        favoritos.push(datos)
-    }
-    localStorage.setItem("favoritos", JSON.stringify(favoritos));
+  } else {
+    favoritos.push(datos)
+  }
+  localStorage.setItem("favoritos", JSON.stringify(favoritos));
 }
 
 function ensenyar() {
-    // leemos los favoritos del localStorage
-    let favoritos = localStorage.getItem("favoritos") || "[]";
-    favoritos = JSON.parse(favoritos);
-    let fav = ""
-    for (let i = 0; i < favoritos.length; i++) {
-        fav += `<li class="section-2__fav-item" value="${favoritos[i].nombre}">${favoritos[i].nombre} <button id="ensenyarFav" value="${favoritos[i].nombre}" onclick="eliminar(value, this)"></button></li>`
-        document.getElementById('favList').innerHTML = fav
-    }
+  // leemos los favoritos del localStorage
+  let favoritos = localStorage.getItem("favoritos") || "[]";
+  favoritos = JSON.parse(favoritos);
+  let fav = ""
+  for (let i = 0; i < favoritos.length; i++) {
+    fav += `<li class="section-2__fav-item" value="${favoritos[i].nombre}">${favoritos[i].nombre} <button id="ensenyarFav" value="${favoritos[i].nombre}" onclick="eliminar(value, this)"></button></li>`
+    document.getElementById('favList').innerHTML = fav
+  }
 }
 
 function eliminar(value, event) {
-    event.parentNode.style.display = 'none'
-    let datos = { nombre: value }
-    let favoritos = localStorage.getItem("favoritos") || "[]"
-    favoritos = JSON.parse(favoritos)
-    let posLista = favoritos.findIndex(function (e) { return e.nombre == datos.nombre; })
-    if (posLista > -1) {
-        favoritos.splice(posLista, 1)
-    }
+  event.parentNode.style.display = 'none'
+  let datos = { nombre: value }
+  let favoritos = localStorage.getItem("favoritos") || "[]"
+  favoritos = JSON.parse(favoritos)
+  let posLista = favoritos.findIndex(function (e) { return e.nombre == datos.nombre; })
+  if (posLista > -1) {
+    favoritos.splice(posLista, 1)
+  }
 
-    localStorage.setItem(("favoritos"), JSON.stringify(favoritos));
+  localStorage.setItem(("favoritos"), JSON.stringify(favoritos));
 }
 
 
@@ -106,69 +108,69 @@ localStorage.getItem("victorias")
 localStorage.getItem("derrotas")
 //muestra el area de duelo
 function verDuelo() {
-    document.getElementById("duel").style.display = "block"
+  document.getElementById("duel").style.display = "block"
 }
 //saca el hechizo de la maquina
 function random() {
-    return parseInt(Math.random() * 3 + 1)
+  return parseInt(Math.random() * 3 + 1)
 }
 //da valor a la eleccion del usuario e inicia el duelo
 function spell(value) {
-    duelo((parseInt(value)), random())
+  duelo((parseInt(value)), random())
 }
 
 let contVict = 0
 let contDerr = 0
 
 function duelo(arg1, arg2) {
-    if (contVict < 10 && contDerr < 10) {
-        if (arg1 === 1 && arg2 === 2) {
-            contVict++
-            document.getElementById("desenlace").innerHTML = `<p>Expelliarmus gana contra Petrificus Totalus!</p><p>GANAS</p>`
-            localStorage.setItem("victorias", contVict)
-            document.getElementById("victoria").innerText = `Victorias - ${contVict}`
-        } else if (arg1 === 1 && arg2 === 3) {
-            document.getElementById("desenlace").innerHTML = `<p>Expelliarmus pierde ante Rictusempra!</p><p>PIERDES</p>`
-            contDerr++
-            localStorage.setItem("derrotas", contDerr)
-            document.getElementById("derrota").innerText = `Derrotas - ${contDerr}`
-        } else if (arg2 === arg1) {
-            document.getElementById("desenlace").innerHTML = `<p>Ambos hechizos chocan!</p><p>EMPATE</p>`
-        } else if (arg1 === 2 && arg2 === 1) {
-            document.getElementById("desenlace").innerHTML = `<p>Petrificus Totalus pierde ante Expelliarmus!</p><p>PIERDES</p>`
-            contDerr++
-            localStorage.setItem("derrotas", contDerr)
-            document.getElementById("derrota").innerText = `Derrotas - ${contDerr}`
-        } else if (arg1 === 2 && arg2 === 3) {
-            document.getElementById("desenlace").innerHTML = `<p>Petrificus Totalus gana contra Rictusempra!</p><p>GANAS</p>`
-            contVict++
-            localStorage.setItem("victorias", contVict)
-            document.getElementById("victoria").innerText = `Victorias - ${contVict}`
-        } else if (arg1 === 3 && arg2 === 2) {
-            document.getElementById("desenlace").innerHTML = `<p>Rictusempra pierde ante Petrificus Totalus!</p><p>PIERDES</p>`
-            contDerr++
-            localStorage.setItem("derrotas", contDerr)
-            document.getElementById("derrota").innerText = `Derrotas - ${contDerr}`
-        } else if (arg1 === 3 && arg2 === 1) {
-            document.getElementById("desenlace").innerHTML = `<p>Rictusempra gana contra Expelliarmus!</p><p>GANAS</p>`
-            contVict++
-            localStorage.setItem("victorias", contVict)
-            document.getElementById("victoria").innerText = `Victorias - ${contVict}`
-        }
-    } else {
-        if (contVict > contDerr) {
-            document.getElementById("victoria").innerText = `HAS GANADO EL DUELO!`
-        } else {
-            document.getElementById("derrota").innerText = `HAS PERDIDO EL DUELO!`
-        }
+  if (contVict < 10 && contDerr < 10) {
+    if (arg1 === 1 && arg2 === 2) {
+      contVict++
+      document.getElementById("desenlace").innerHTML = `<p>Expelliarmus gana contra Petrificus Totalus!</p><p>GANAS</p>`
+      localStorage.setItem("victorias", contVict)
+      document.getElementById("victoria").innerText = `Victorias - ${contVict}`
+    } else if (arg1 === 1 && arg2 === 3) {
+      document.getElementById("desenlace").innerHTML = `<p>Expelliarmus pierde ante Rictusempra!</p><p>PIERDES</p>`
+      contDerr++
+      localStorage.setItem("derrotas", contDerr)
+      document.getElementById("derrota").innerText = `Derrotas - ${contDerr}`
+    } else if (arg2 === arg1) {
+      document.getElementById("desenlace").innerHTML = `<p>Ambos hechizos chocan!</p><p>EMPATE</p>`
+    } else if (arg1 === 2 && arg2 === 1) {
+      document.getElementById("desenlace").innerHTML = `<p>Petrificus Totalus pierde ante Expelliarmus!</p><p>PIERDES</p>`
+      contDerr++
+      localStorage.setItem("derrotas", contDerr)
+      document.getElementById("derrota").innerText = `Derrotas - ${contDerr}`
+    } else if (arg1 === 2 && arg2 === 3) {
+      document.getElementById("desenlace").innerHTML = `<p>Petrificus Totalus gana contra Rictusempra!</p><p>GANAS</p>`
+      contVict++
+      localStorage.setItem("victorias", contVict)
+      document.getElementById("victoria").innerText = `Victorias - ${contVict}`
+    } else if (arg1 === 3 && arg2 === 2) {
+      document.getElementById("desenlace").innerHTML = `<p>Rictusempra pierde ante Petrificus Totalus!</p><p>PIERDES</p>`
+      contDerr++
+      localStorage.setItem("derrotas", contDerr)
+      document.getElementById("derrota").innerText = `Derrotas - ${contDerr}`
+    } else if (arg1 === 3 && arg2 === 1) {
+      document.getElementById("desenlace").innerHTML = `<p>Rictusempra gana contra Expelliarmus!</p><p>GANAS</p>`
+      contVict++
+      localStorage.setItem("victorias", contVict)
+      document.getElementById("victoria").innerText = `Victorias - ${contVict}`
     }
+  } else {
+    if (contVict > contDerr) {
+      document.getElementById("victoria").innerText = `HAS GANADO EL DUELO!`
+    } else {
+      document.getElementById("derrota").innerText = `HAS PERDIDO EL DUELO!`
+    }
+  }
 }
 
 
 //Crea tu propia aventura
 function iniciar() {
-    document.getElementById("iniciar").style.display = 'none'
-    document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina4">
+  document.getElementById("iniciar").style.display = 'none'
+  document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina4">
     <div class="grid__item">
     <p>¡AYUDA! Harry te envía a Hedwig desde Hogwarts. Voldemort y los mortífagos han secuestrado a... GINNY.</p>
     <div class="button-container">
@@ -181,7 +183,7 @@ function iniciar() {
   </div>
  `}
 function pagina5() {
-    document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina5">
+  document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina5">
     <div class="grid__item">
       <p>Llegas a la sala común de Gryffindor, en Hogwarts. Harry te ofrece el mapa del merodeador. Buscas a Ginny, a
         ver si está por algún sitio.</p>
@@ -197,7 +199,7 @@ function pagina5() {
   </div>
   `}
 function pagina6() {
-    document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina6">
+  document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina6">
     <div class="grid__item">
       <p>Entre los pasillos de Hogwarts, llegas a la sala común de Slytherin. Te encuentras con Draco, quien te reta a
         un duelo.</p>
@@ -213,7 +215,7 @@ function pagina6() {
 `
 }
 function pagina7() {
-    document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina7">
+  document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina7">
     <div class="grid__item">
       <p>Apareces en Sortilegios Weasley, donde te espera George Te ofrece unas golosinas mágicas, cages fuerzas y
         decides seguir con la búsqueda.</p>
@@ -230,7 +232,7 @@ function pagina7() {
   `
 }
 function pagina8() {
-    document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina8">
+  document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina8">
     <div class="grid__item">
       <p>Entre tanto ajetreo te han capturado los mortífagos y llevado ante Lucius Malfoy. Te encierran en un calabozo
         mágico.</p>
@@ -247,8 +249,8 @@ function pagina8() {
   `
 }
 function pagina9() {
-    document.getElementById("iniciar").style.display = 'block'
-    document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina9">
+  document.getElementById("iniciar").style.display = 'block'
+  document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina9">
     <div class="grid__item">
       <p>Llegas a Hogwarts Express. Te encuentras con Luna, leyendo un periódico. Ella sonríe, mira hacia arriba,
         hacia
@@ -264,7 +266,7 @@ function pagina9() {
   </div>`
 }
 function pagina10() {
-    document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina10">
+  document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina10">
     <div class="grid__item">
       <p>Llegas a Gringotts. buscando el horrocrux en la cámara de Bellatrix.De repente ella aparece, te apunta con su
         varita, se ríe, y, mientras lo hace, tú…</p>
@@ -283,7 +285,7 @@ function pagina10() {
   `
 }
 function pagina11() {
-    document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina11">
+  document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina11">
     <div class="grid__item">
       <p>Apareces en Hogwarts en plena batalla contra los mortífagos. De repente, aparece ante ti Voldemort. Te apunta
         con
@@ -302,7 +304,7 @@ function pagina11() {
   `
 }
 function pagina12() {
-    document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina12">
+  document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina12">
     <div class="grid__item">
       <p>Estás en 12 Grimmaud Place buscando alguna pista para encontrar a Ginny y te encuentras con Sirius Black.
         No hay pista alguna ahí, pero Sirius te ofrece su ayuda. Te da una nueva bolsa de polvos flu, que casi no te
@@ -320,7 +322,7 @@ function pagina12() {
   `
 }
 function pagina13() {
-    document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina13">
+  document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina13">
     <div class="grid__item">
       <p>Estás muy cerca de encontrar a Ginny. Muy posiblemente esté bajo la trampilla que custodia Fluffy. Los
         mortífagos
@@ -341,8 +343,8 @@ function pagina13() {
   `
 }
 function pagina14() {
-    document.getElementById("iniciar").style.display = 'block'
-    document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina14">
+  document.getElementById("iniciar").style.display = 'block'
+  document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina14">
     <div class="grid__item">
       <p>Apareces en Hogwarts. en plena batalla y ves cómo atacan a Harry. Le lanzas un hechizo "PROTEGO".
         permitiéndole
@@ -359,7 +361,7 @@ function pagina14() {
   </div>`
 }
 function pagina15() {
-    document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina15">
+  document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina15">
     <div class="grid__item">
       <p>¡Te has despistado! Fenrir Greyback aparece ante ti con cuatro mortífagos. Luchas como puedes, pero ellos son
         más...</p>
@@ -379,7 +381,7 @@ function pagina15() {
   `
 }
 function pagina16() {
-    document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina16">
+  document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina16">
     <div class="grid__item">
       <p>En Hogwarts, Dumbledore te advierte que el lugar en que está Ginny está en el interior del snitch.
         En ese momento, aparece ante ti el snitch, que no será fácil de atrapar.</p>
@@ -400,7 +402,7 @@ function pagina16() {
   `
 }
 function pagina17() {
-    document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina17">
+  document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina17">
     <div class="grid__item">
       <p>Vas deambulando por el bosque prohibido. Hagrid llega en tu busca y te ofrece su ayuda.</p>
       <div class="button-container">
@@ -417,8 +419,8 @@ function pagina17() {
   `
 }
 function pagina18() {
-    document.getElementById("iniciar").style.display = 'block'
-    document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina18">
+  document.getElementById("iniciar").style.display = 'block'
+  document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina18">
     <div class="grid__item">
       <p>Mala suerte. Cuando creías que estabas cerca de rescatar a Ginny. aparece Voldemort con Nagini y un gran
         número
@@ -433,7 +435,7 @@ function pagina18() {
   </div>`
 }
 function pagina19() {
-    document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina19">
+  document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina19">
     <div class="grid__item">
       <p>En el bosque prohibido, te encuentras con Harry. Hermione y Ron. Están siendo atacados por Aragog.</p>
       <div class="button-container">
@@ -452,7 +454,7 @@ function pagina19() {
   `
 }
 function pagina20() {
-    document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina20">
+  document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina20">
     <div class="grid__item">
       <p>Llegando al lago, muy cerca de Hogwarts, tras la pista de Ginny. empiezas a notar un frío tremendo y aparece
         ante ti un dementor de Azkaban.</p>
@@ -468,7 +470,7 @@ function pagina20() {
     </div>
   </div>`}
 function pagina21() {
-    document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina21">
+  document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina21">
     <div class="grid__item">
       <p>Vas paseando por el bosque prohibido, se hace de noche y. ino, hay luna llena! De repente, Remus Lupin se
         convierte en hombre lobo y... !Te quiere atacar!</p>
@@ -485,8 +487,8 @@ function pagina21() {
   </div>
   `}
 function pagina22() {
-    document.getElementById("iniciar").style.display = 'block'
-    document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina22">
+  document.getElementById("iniciar").style.display = 'block'
+  document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina22">
     <div class="grid__item">
       <p>Llegas al patio de Hogwarts y ves a Ginny en un pasillo. Pero aparece ante ti Nagini, dispuesta a atacaros.
         De
@@ -499,7 +501,7 @@ function pagina22() {
     </div>
   </div>`}
 function pagina23() {
-    document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina23">
+  document.getElementById("aventura").innerHTML = `<div class="grid grid--2-cols" id="pagina23">
     <div class="grid__item">
       <p>Llegas al baño de las chicas, donde te encuentras con Myrtle la llorona. Parece enfadada, alguien se ha
         vuelto
@@ -517,4 +519,3 @@ function pagina23() {
     </div>
   </div>
   `}
-  

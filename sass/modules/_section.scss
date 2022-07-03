@@ -129,6 +129,16 @@
       object-fit: cover;
    }
 
+   .button {
+      @media (max-width: $screen-xs) {
+         margin-bottom: 10px;
+         :last-child {
+            margin-bottom: 0;
+         }
+      }
+      
+   }
+
    &__p {
       z-index: 1;
       position: relative;
@@ -141,7 +151,13 @@
       z-index: 1;
       position: relative;
       margin-bottom: 40px;
+
+      @media (max-width: $screen-xs) {
+         flex-direction: column;
+      }
    }
+
+
 
    &__results {
       position: relative;
@@ -161,6 +177,9 @@
          right: 0;
          left: 0;
          pointer-events: none;
+      }
+      @media (max-width: $screen-xs) {
+         padding: 28px;
       }
    }
 
