@@ -132,7 +132,7 @@
    .button {
       @media (max-width: $screen-xs) {
          margin-bottom: 10px;
-         :last-child {
+         &:last-child {
             margin-bottom: 0;
          }
       }
